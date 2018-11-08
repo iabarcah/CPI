@@ -21,6 +21,7 @@ private:
 		std::string SERVER;
 		uint16_t    PORT;
 		std::string DATA;
+		std::string archivo;
 	} args_t;
 	
 	// 2) Modificar constructor
@@ -41,7 +42,7 @@ public:
 	
 private:
 	void printUsage();
-	
+	char *captura= "GET /HTTP/1.1\n";
 	
 };
 
@@ -49,6 +50,7 @@ checkArgs::checkArgs(int _argc , char **_argv){
 	parametros.SERVER = "";
 	parametros.PORT   = 0;
 	parametros.DATA   = "";
+	parametros.archivo = "";
 	
 	argc = _argc;
 	argv = _argv;
@@ -71,7 +73,8 @@ checkArgs::args_t checkArgs::getArgs(){
 					parametros.PORT = atoi(optarg);
 					break;
 			case 'd':
-					parametros.DATA = optarg;
+					parametros.DATA =captura,optarg;
+					//parametros.DATA = archivo;
 					break;
 			case 'h':
 			default:
