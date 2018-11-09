@@ -24,7 +24,7 @@
 #include<fstream>
 using namespace std;
 
-const uint32_t RCVBUFSIZE = 32;    // Size of receive buffer
+const uint32_t RCVBUFSIZE = 1024;    // Size of receive buffer
 
 int main(int argc, char *argv[]) {
 
@@ -63,7 +63,6 @@ int main(int argc, char *argv[]) {
 			if ((bytesReceived = (sock.recv(echoBuffer, RCVBUFSIZE))) <= 0) {
 				std::cerr << "Unable to read";
 				exit(EXIT_FAILURE);
-				datos.close();
 			}
 			totalBytesReceived += bytesReceived;     // Keep tally of total bytes
 			echoBuffer[bytesReceived] = '\0';        // Terminate the string!
@@ -71,6 +70,7 @@ int main(int argc, char *argv[]) {
 			std::cout << echoBuffer;                      // Print the echo buffer
 			datos<<echoBuffer;
 			
+			datos.close();
 		}
 
 		std::cout << std::endl;
@@ -78,6 +78,7 @@ int main(int argc, char *argv[]) {
 		// Destructor closes the socket
 
 	} catch(SocketException &e) {
+		datos.close();
 		std::cerr << e.what() << std::endl;
 		exit(EXIT_FAILURE);
 	}
