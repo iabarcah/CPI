@@ -1,0 +1,39 @@
+HTTP/1.1 200 OK
+Date: Fri, 09 Nov 2018 02:22:57 GMT
+Server: Apache
+Accept-Ranges: bytes
+Vary: Accept-Encoding
+Content-Length: 2017
+Content-Type: text/html
+
+<HTML>
+<HEAD>
+<TITLE>The Resort Home Page</TITLE>
+<META name="verify-v1" content="2f3jm29jfRnJeS5Uq2RvFGu3QKjOpXu3NBSRhBzOq/c=" />
+</HEAD>
+<BODY background="/images/blurbob.jpg">
+
+<H2>
+<a href="http://www3.resort.com/index2.php" rel="nofollow">Looking For A Vacation Site?<br />
+Click Here For Resort Vacations</a>
+</H2>
+<P>
+<CENTER>
+<A HREF="http://www.resort.com/index2.html">
+<IMG ALT="Resort Holy Seal" SRC="/images/holy-seal3.gif" border=0>
+<BR>
+<B>The Republic of the Resort</B>
+</A>
+</CENTER>
+
+<BR><BR>
+
+And verily it was written in the Book of the Resort, that in the 4th year
+before the Millennium, the disciples of 'Bob' burst forth as wasps from
+a nest, settling the lines of Power across the Bay Area.
+
+<TABLE WIDTH="100%">
+<TR>
+<TH><A HREF="http://www.abattoir.com/">Abattoir</A></TH>
+<TH><A HREF="http://www.7thsign.com/">7th Sign</A></TH>
+<TH><A
