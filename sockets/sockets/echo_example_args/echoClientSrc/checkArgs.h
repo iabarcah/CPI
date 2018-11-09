@@ -1,5 +1,5 @@
-#ifndef _CHECKARGS_H_
-#define _CHECKARGS_H_
+#ifndef CHECKARGS_H
+#define CHECKARGS_H
 
 extern char *optarg;
 extern int optind, opterr, optopt;
@@ -20,8 +20,7 @@ private:
 	typedef struct args_t{
 		std::string SERVER;
 		uint16_t    PORT;
-		std::string DATA;
-		std::string archivo;
+		std::string archivoTexto;
 	} args_t;
 	
 	// 2) Modificar constructor
@@ -42,15 +41,14 @@ public:
 	
 private:
 	void printUsage();
-	char *captura= "GET /HTTP/1.1\n";
+	
 	
 };
 
 checkArgs::checkArgs(int _argc , char **_argv){
 	parametros.SERVER = "";
 	parametros.PORT   = 0;
-	parametros.DATA   = "";
-	parametros.archivo = "";
+	parametros.archivoTexto   = "";
 	
 	argc = _argc;
 	argv = _argv;
@@ -73,8 +71,7 @@ checkArgs::args_t checkArgs::getArgs(){
 					parametros.PORT = atoi(optarg);
 					break;
 			case 'd':
-					parametros.DATA =captura,optarg;
-					//parametros.DATA = archivo;
+					parametros.archivoTexto = optarg;
 					break;
 			case 'h':
 			default:
@@ -85,7 +82,7 @@ checkArgs::args_t checkArgs::getArgs(){
 
 	if ( parametros.SERVER == "" ||
 		 parametros.PORT <= 0 ||
-		 parametros.DATA == "" ){
+		 parametros.archivoTexto == "" ){
 		printUsage();
 		exit(EXIT_FAILURE);
 	}

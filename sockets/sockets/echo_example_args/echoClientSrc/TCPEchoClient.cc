@@ -1,4 +1,4 @@
-/*
+/*/*
  *   C++ sockets on Unix and Windows
  *   Copyright (C) 2002
  *
@@ -21,27 +21,30 @@
 #include "checkArgs.h"
 #include <iostream>    // For cerr and cout
 #include <cstdlib>     // For atoi()
-#include <fstream>
-#include <iomanip>
-const uint64_t RCVBUFSIZE = 4096;    // Size of receive buffer
+#include<fstream>
+using namespace std;
+
+const uint32_t RCVBUFSIZE = 32;    // Size of receive buffer
 
 int main(int argc, char *argv[]) {
 
 	checkArgs* argumentos = new checkArgs(argc, argv);
-	
+	ofstream datos;
+	datos.open("datos.txt",ios::out);
     std::string servAddress; 
 	uint16_t    echoServPort;
-    std::string echoString;
-    std::string archivo;   
-	
+    std::string echoString;   
+    std::string archivo;
 	servAddress   = argumentos->getArgs().SERVER;
 	echoServPort  = argumentos->getArgs().PORT;
-	echoString    = argumentos->getArgs().DATA;
-	archivo = argumentos->getArgs().archivo;
+	archivo    = argumentos->getArgs().archivoTexto;
+        echoString = "GET / HTTP/1.1\r\nHost: "+servAddress+"\r\n\r\n";
+        
+	
 	delete argumentos;
-	ofstream archivo;  // objeto de la clase ofstream
-	uint64_t echoStringLen = echoString.length();   // Determine input leng64
-	archivo=fopen("datos.txt",rw);
+	
+	uint32_t echoStringLen = echoString.length();   // Determine input length
+
 	try {
 		// Establish connection with the echo server
 		TCPSocket sock(servAddress, echoServPort);
@@ -50,31 +53,27 @@ int main(int argc, char *argv[]) {
 		sock.send(echoString.c_str(), echoStringLen);
 
 		char echoBuffer[RCVBUFSIZE + 1];    // Buffer for echo string + \0
-		uint64_t bytesReceived = 1;              // Bytes read on each recv()
-		uint64_t totalBytesReceived = 0;         // Total bytes read
+		uint32_t bytesReceived = 0;              // Bytes read on each recv()
+		uint32_t totalBytesReceived = 0;         // Total bytes read
 
-													// Receive the same string back from the server
-		std::cerr << "Received: ";               // Setup to print the echoed string
-		while (totalBytesReceived < echoStringLen) {
-			std::cerr << totalBytesReceived;
-			std::cerr << "\n";
-			std::cerr << bytesReceived;
-			//std::cerr << "entro";
+		// Receive the same string back from the server
+		std::cout << "Received: ";               // Setup to print the echoed string
+		while (totalBytesReceived < 2048) {
 			// Receive up to the buffer size bytes from the sender
 			if ((bytesReceived = (sock.recv(echoBuffer, RCVBUFSIZE))) <= 0) {
 				std::cerr << "Unable to read";
 				exit(EXIT_FAILURE);
-
+				datos.close();
 			}
-
 			totalBytesReceived += bytesReceived;     // Keep tally of total bytes
-			echoBuffer[bytesReceived] += '\0';        // Terminate the string!
-			std::cerr << echoBuffer;                      // Print the echo buffer
-			archivo << echoBuffer ;
+			echoBuffer[bytesReceived] = '\0';        // Terminate the string!
+
+			std::cout << echoBuffer;                      // Print the echo buffer
+			datos<<echoBuffer;
+			
 		}
-//		fclose(archivo);
-		std::cerr << "salio";
-		std::cerr << std::endl;
+
+		std::cout << std::endl;
 
 		// Destructor closes the socket
 
