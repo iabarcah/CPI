@@ -1,6 +1,0 @@
-HTML:
-HTML significa lenguaje de marcado de hipertexto, su primera versión fue creada por Tim Berners-Lee en 1991. Está construido a través de elementos los cuales están constituidos por etiquetas, atributos y contenidos. Este lenguaje interpreta al navegador web para mostrar el sitio o las aplicaciones que se piden.
-HTTP:
-HTTP significa protocolo de transferencia de hipertexto el cual fue inventado por Tim Berners-Lee entre los años 1989-1991.Este es un protocolo que se encuentra en la aplicación y es sin estado, esto significa que no guarda información de ninguna conexión.
-Relación:
-La relación que tiene el HTTP con el HTML es, nosotros al solicitar una página o alguna aplicación , esto se hace a través del HTTP y en la respuesta se entrega la información solicitada, más el HTML que nos mostrara ya sea la aplicación o página que estamos solicitando a través del HTTP.
